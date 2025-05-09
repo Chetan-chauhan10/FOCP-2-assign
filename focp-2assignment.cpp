@@ -204,7 +204,7 @@ void testPolymorphism() {
     cout << " Testing Polymorphism -----"<<endl;
 
     vector<Person*> people;
-    people.push_back(new Student("Ashu", 20, "S01", "123", "CS", "2023-08", 3.5));
+    people.push_back(new Student("Chetan", 20, "S01", "123", "CS", "2023-08", 3.5));
     people.push_back(new Professor("mr strict", 45, "P01", "456", "gp", "cs hour", "2020-205"));
 
     for (Person* p : people) {
