@@ -6,16 +6,14 @@
 #include <algorithm>
 using namespace std;
 
-// ----------------------
-// Base Class: Person
-// ----------------------
+
 class Person {
 protected:
     string name, id, contact;
     int age;
 
 public:
-    // Constructor with basic validation
+    
     Person(string n, int a, string i, string c) {
         setName(n);
         setAge(a);
@@ -53,9 +51,6 @@ public:
     string getContact() { return contact; }
 };
 
-// ----------------------
-// Derived Class: Student
-// ----------------------
 class Student : public Person {
     string program;
     string enrollmentDate;
@@ -67,7 +62,6 @@ public:
         setGPA(g);
     }
 
-    // GPA must be between 0.0 and 4.0
     void setGPA(float g) {
         if (g < 0.0 || g > 4.0) throw invalid_argument("GPA must be between 0.0 and 4.0.");
         gpa = g;
@@ -75,21 +69,15 @@ public:
 
     float getGPA() { return gpa; }
 
-    // Overriding displayDetails for Student
     void displayDetails() override {
         Person::displayDetails();
         cout << "Program: " << program << ", GPA: " << gpa << ", Enrolled: " << enrollmentDate << endl;
     }
 
-    // Student pays a fixed tuition fee (for now)
     double calculatePayment() override {
         return 1000.0;
     }
 };
-
-// ------------------------
-// Derived Class: Professor
-// ------------------------
 class Professor : public Person {
     string department, specialization, hireDate;
 
@@ -101,16 +89,11 @@ public:
         Person::displayDetails();
         cout << "Department: " << department << ", Specialization: " << specialization << ", Hired: " << hireDate << endl;
     }
-
-    // Professors earn a salary
     double calculatePayment() override {
         return 5000.0;
     }
 };
 
-// ------------------
-// Course Class
-// ------------------
 class Course {
     string code, title, description;
     int credits;
@@ -120,7 +103,6 @@ public:
         setCredits(cr);
     }
 
-    // Credits must be > 0
     void setCredits(int c) {
         if (c <= 0) throw invalid_argument("Credits must be positive.");
         credits = c;
@@ -132,9 +114,6 @@ public:
     }
 };
 
-// ----------------------
-// Department Class
-// ----------------------
 class Department {
     string name, location;
     float budget;
@@ -143,9 +122,6 @@ public:
     Department(string n, string l, float b) : name(n), location(l), budget(b) {}
 };
 
-// ------------------------------------------
-// GradeBook – manages student grades in a course
-// ------------------------------------------
 class GradeBook {
     map<string, float> grades;
 
@@ -176,9 +152,6 @@ public:
     }
 };
 
-// ------------------------------------------
-// EnrollmentManager – tracks student enrollments
-// ------------------------------------------
 class EnrollmentManager {
     map<string, vector<string>> courseEnrollments;
 
@@ -197,9 +170,6 @@ public:
     }
 };
 
-// ------------------------------------------
-// Test polymorphism with Person pointers
-// ------------------------------------------
 void testPolymorphism() {
     cout << " Testing Polymorphism -----"<<endl;
 
@@ -208,7 +178,7 @@ void testPolymorphism() {
     people.push_back(new Professor("mr strict", 45, "P01", "456", "gp", "cs hour", "2020-205"));
 
     for (Person* p : people) {
-        p->displayDetails(); // Calls derived version automatically
+        p->displayDetails();    
         cout << "Payment: $" << p->calculatePayment() << "\n\n";
     }
 
